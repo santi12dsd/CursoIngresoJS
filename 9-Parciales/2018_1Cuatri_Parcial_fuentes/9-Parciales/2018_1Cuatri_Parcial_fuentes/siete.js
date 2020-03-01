@@ -1,32 +1,46 @@
 function mostrar()
 {
-    var nota
-    var contador = 0;
+    var nota;
+    var sexo;
     var acumulador = 0;
     var promedio;
-    var sexo;
-    var seguir;
-
-    do {
-    nota = parseInt(prompt("Ingrese nota"));
-    while (isNaN(nota)){
-        nota  = parseInt(prompt("Eso no es un numero"));
-    }
-    if (nota <0 || nota >10) {
-        nota  = parseInt(prompt("Ingrese una nota valida"));
-    }
-    sexo = prompt("Ingrese sexo")
-    if (!(sexo == f || m ) {
-        alert("Ingrese un sexo valido");
-    }
-    acumulador = acumulador + nota
-    contador = contador +1
-
-
-
+    //El flag tambien tiene que estar igualado a 0 
+    var flag = 0;
+    var notaBaja;
+    var sexoBajo;
+    var contadorV6 = 0;
     
-    }while(contador < 5 ); 
-    promedio = acumulador / contador;
-    alert("El promedio es " + promedio);
+
+
+    for(var i = 0; i <5 ; i++ ){
+        nota = parseInt(prompt("Ingrese una nota"));
+        while(nota <0 || nota >10 || isNaN(nota) ) {
+            nota = parseInt(prompt("Esa nota es invalida. Reingrese nota (0-10): "));
+        }
+        acumulador = acumulador + nota
+        sexo = prompt("Ingrese sexo")
+        while(sexo != "m" && sexo != "f") {
+            sexo = prompt("Ese sexo es invalido. Ingrese un sexo entre (f-m) ");
+        }
+        acumulador = acumulador + nota
+        // Como en el if ingresan sexo y nota tengo que poner como quedarian ambos.
+        if(flag == 0 || nota < notaBaja ) {
+            notaBaja = nota;
+            sexoBajo = sexo;
+            flag = 1;
+        }
+        if (sexo =="m" && nota >= 6) {
+            contadorV6 = contadorV6 + 1;
+
+        }
+
+    }
+    promedio = acumulador / 5;
+    
+    document.write("El promedio total de las notas es " + promedio + "</br>");
+    document.write("La nota mas baja es " + notaBaja + " y pertenece al sexo " + sexoBajo +  "</br>");
+    document.write("La cantidad de varones cuya nota fue mayor o igual a 6 es " + contadorV6);
+    
+          
 
 }
